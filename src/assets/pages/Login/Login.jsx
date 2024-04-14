@@ -1,14 +1,22 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
 
-    const CaptchaRef = useRef(null)
+  const CaptchaRef = useRef(null)
   const [disabled, setDisabled] = useState(true)
+  const { signIn } = useContext(AuthContext)
+
+  // const from = location.state?.from?.pathname || "/";
+  // console.log("state in the location  login page", location.state)
   
-  const {signIn} =useContext(AuthContext)
+
+
+
+
 
     useEffect(() => {
         loadCaptchaEnginge(6)
@@ -73,7 +81,8 @@ const Login = () => {
                             {/* <button className="btn btn-primary">Login</button> */}
         <input disabled={disabled } className="btn btn-primary" type="submit"  value="Login"/>        
         </div>
-      </form>
+            </form>
+            <p className='p-6 '><small>New here? <Link to = "/signup">Create an account</Link></small></p>
     </div>
   </div>
 </div>
