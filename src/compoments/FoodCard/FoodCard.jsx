@@ -13,12 +13,12 @@ const FoodCard = ({ item }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
-    const[ refetch] = useCart()
+    const [, refetch] = useCart();
 
 
 
 
-    const handleAddToCart = food => {
+    const handleAddToCart = () => {
         
 
 
@@ -27,7 +27,7 @@ const FoodCard = ({ item }) => {
             //    sead to database  item to the database
             
 
-            console.log(user.email, food);
+            console.log(user.email);
             const cartItem = {
                 menuId: _id,
                 email: user.email,
