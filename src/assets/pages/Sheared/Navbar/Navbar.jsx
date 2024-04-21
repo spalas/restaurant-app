@@ -3,11 +3,14 @@ import { AuthContext } from "../../../../providers/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { FaCartArrowDown} from 'react-icons/fa';
+import useCart from "../../../../hooks/useCart";
 
 
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart();
+
 
   const handleLogOut = () => {
       logOut()
@@ -55,11 +58,11 @@ const Navbar = () => {
               <li><Link to="/">
                 <button className="btn">
                 <FaCartArrowDown />
-  <div className="badge badge-secondary">+0</div>
-</button></Link></li>
+                <div className="badge badge-secondary">+{cart.length}</div>
+                </button></Link></li>
               
             
-              {user ? <>
+               {user ? <>
                   {/* <span>{ user?.displayName}</span> */}
           <button onClick={handleLogOut} >LogOut</button>
           </> : <><li><Link to="/login">Login</Link></li></>}
