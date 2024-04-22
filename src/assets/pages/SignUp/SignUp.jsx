@@ -5,6 +5,7 @@ import { useContext } from "react";
 import Swal from 'sweetalert2';
 import {  Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import SocialLogin from "../../../compoments/SocialLogin/SocialLogin";
 
 
 const SignUp = () => {
@@ -119,8 +120,10 @@ const SignUp = () => {
             
                 </div>
                 <p className='p-6 '><small><Link to = "/login">Already have an Account? </Link></small></p>
-                    </form>
-                  </div>
+              </form>
+              <SocialLogin></SocialLogin>
+            </div>
+            
                 </div>
    </div>
       </>

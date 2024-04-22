@@ -1,16 +1,24 @@
-import { FaAd, FaCalendar, FaHome, FaList, FaPaypal, FaSearch, FaShoppingCart } from "react-icons/fa";
+import { FaAd, FaCalendar, FaEnvelope, FaHome, FaList, FaPaypal, FaSearch, FaShoppingCart } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 
 
 const Dashboard = () => {
-const [cart] = useCart()
+    const [cart] = useCart();
+    // TODO get isAdmin value from database
+    const isAdmin = true;
 
     return (
         <div className="flex">
 {/* {dashboard side bar} */}
             <div className="w-64 min-h-screen bg-orange-400">
                 <ul className="menu p-4">
+                    {
+                        isAdmin ?
+                        <></>
+                        :
+                        <></>
+                    }
                     <li><NavLink to="/dashboard/userHome">
                         <FaHome></FaHome>
                         User Home</NavLink>
@@ -36,7 +44,12 @@ const [cart] = useCart()
                         <FaList></FaList>
                        My Booing</NavLink>
                     </li>
+
+                    {/* shered nav link  */}
                     <div className="divider"></div>
+
+
+
                     <li><NavLink to="/">
                         <FaHome></FaHome>
                        Home</NavLink>
@@ -44,6 +57,10 @@ const [cart] = useCart()
                     <li><NavLink to="/menu">
                         <FaSearch></FaSearch>
                        Menu</NavLink>
+                    </li>
+                    <li><NavLink to="/order/contact">
+                        <FaEnvelope></FaEnvelope>
+                       contact</NavLink>
                     </li>
                 </ul>
                 
