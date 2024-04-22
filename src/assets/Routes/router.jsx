@@ -47,7 +47,7 @@ import Dashboard from "../Layout/Dashboard";
     },
     {
       path: "dashboard",
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children: [
         {
           path: "cart",

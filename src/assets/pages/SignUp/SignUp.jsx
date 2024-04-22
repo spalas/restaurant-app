@@ -3,11 +3,12 @@ import { Helmet  } from 'react-helmet-async';
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useContext } from "react";
 import Swal from 'sweetalert2';
-import { Navigate, useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 
 const SignUp = () => {
-
+  const axiosPublic = useAxiosPublic();
     const {
         register,
       handleSubmit,
@@ -28,17 +29,28 @@ const SignUp = () => {
       console.log(loggedUser)
       updateUserProfile(data.name, data.photoUR)
         .then(() => {
-          console.log("User updated successfully")
-          reset();
+
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+             }
+          axiosPublic.post("/users", userInfo)
+            .then(res => {
+              if (res.data.insertedId) {
+                // console.log("user updated")
+                reset();
          
-Swal.fire({
-  position: "top-end",
-  icon: "success",
-  title: "User created successfully",
-  showConfirmButton: false,
-  timer: 1500
-});
-navigate ("/")
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User created successfully",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                navigate ("/")
+            }
+          })
+          
   }).catch(error=>console.log(error))
       
     })
@@ -104,8 +116,9 @@ navigate ("/")
                               <input className="btn btn-primary" type="submit" value="Sign Up"/>
 
                             
-                        
-                      </div>
+            
+                </div>
+                <p className='p-6 '><small><Link to = "/login">Already have an Account? </Link></small></p>
                     </form>
                   </div>
                 </div>
