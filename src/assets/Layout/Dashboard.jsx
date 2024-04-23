@@ -1,4 +1,4 @@
-import { FaAd, FaCalendar, FaEnvelope, FaHome, FaList, FaPaypal, FaSearch, FaShoppingCart } from "react-icons/fa";
+import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaPaypal, FaSearch, FaShoppingCart, FaUsers, FaUtensilSpoon } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 
@@ -15,11 +15,34 @@ const Dashboard = () => {
                 <ul className="menu p-4">
                     {
                         isAdmin ?
-                        <></>
+                            <>
+                            <li><NavLink to="/dashboard/adminHome">
+                        <FaHome></FaHome>
+                        Admin Home</NavLink>
+                    </li>
+                    
+                    <li><NavLink to="/dashboard/addItems">
+                        <FaUtensilSpoon></FaUtensilSpoon>
+                        Add Items</NavLink>
+                    </li>
+                    <li><NavLink to="/dashboard/manageItems">
+                        <FaList></FaList>
+                        Manage Items</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/manageBookings">
+                        <FaBook></FaBook>
+                        Manage Bookings</NavLink>
+                    </li>
+                    
+                    <li><NavLink to="/dashboard/allusers">
+                        <FaUsers></FaUsers>
+                       All Users</NavLink>
+                    </li>
+</>
                         :
-                        <></>
-                    }
-                    <li><NavLink to="/dashboard/userHome">
+                            <>
+                            <li><NavLink to="/dashboard/userHome">
                         <FaHome></FaHome>
                         User Home</NavLink>
                     </li>
@@ -44,7 +67,9 @@ const Dashboard = () => {
                         <FaList></FaList>
                        My Booing</NavLink>
                     </li>
-
+</>
+                    }
+                    
                     {/* shered nav link  */}
                     <div className="divider"></div>
 
