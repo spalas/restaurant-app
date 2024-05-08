@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../../providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../../../compoments/SocialLogin/SocialLogin';
 
 
@@ -10,6 +10,7 @@ const Login = () => {
   const CaptchaRef = useRef(null)
   const [disabled, setDisabled] = useState(true)
   const { signIn } = useContext(AuthContext)
+  const navigate = useNavigate();
 
   // const from = location.state?.from?.pathname || "/";
   // console.log("state in the location  login page", location.state)
@@ -28,11 +29,12 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-      console.log(email, password);
+      // console.log(email, password);
       signIn(email, password)
         .then(result => {
           const user = result.user;
           console.log(user);
+          navigate("/")   
       })
     }
 
@@ -76,7 +78,7 @@ const Login = () => {
           <LoadCanvasTemplate />
           </label>
           <input ref={CaptchaRef} type="text" name="captcha" placeholder="Type here above captcha" className="input input-bordered" required />
-          <button onClick={habdleValiateCatcha} className="btn btn-outline btn-xs mt-2">Valiate</button>
+          <button onClick={habdleValiateCatcha} className="btn btn-outline btn-xs mt-2">valite</button>
         </div>
         <div className="form-control mt-6">
                             {/* <button className="btn btn-primary">Login</button> */}
