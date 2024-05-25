@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
+
 import SocialLogin from '../../../compoments/SocialLogin/SocialLogin';
 
 
@@ -12,7 +13,7 @@ const Login = () => {
   const { signIn } = useContext(AuthContext)
   const navigate = useNavigate();
 
-  // const from = location.state?.from?.pathname || "/";
+const from = location.state?.from?.pathname || "/";
   // console.log("state in the location  login page", location.state)
   
 
